@@ -1,19 +1,46 @@
-local packer = require("packer")
-return packer.startup(function(use)
-	use({ "wbthomason/packer.nvim" })
-	use({
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.6",
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-		},
-	})
-	use({ "nanotech/jellybeans.vim" }) -- color scheme
-	use({
-		"kdheepak/lazygit.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-	})
-	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-end)
+
+return {
+  -- Lazy itself
+  { "folke/lazy.nvim", version = "*" },
+
+  -- Colorscheme
+  { "folke/tokyonight.nvim" },
+
+  -- Telescope + dependency
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.6",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  -- Lazygit
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
+
+  -- Comment.nvim with config
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+
+  { "neovim/nvim-lspconfig" },
+  -- LSP config
+  {
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = { "williamboman/mason.nvim" },
+},
+}
