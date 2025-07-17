@@ -50,10 +50,10 @@ return {
 
   { "neovim/nvim-lspconfig" },
   -- LSP config
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-  },
+  -- {
+  --   "williamboman/mason-lspconfig.nvim",
+  --   dependencies = { "williamboman/mason.nvim" },
+  -- },
   {
     'saghen/blink.cmp',
     dependencies = { 'rafamadriz/friendly-snippets' },
@@ -88,4 +88,9 @@ return {
     end,
     event = "BufReadPost",
   },
+  -- {
+  --   "scalameta/nvim-metals",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   -- ft = { "scala", "sbt" },
+  -- }
 }

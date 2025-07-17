@@ -56,6 +56,7 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References", un
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation", unpack(opts) })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol", unpack(opts) })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", unpack(opts) })
+
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic", unpack(opts) })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic", unpack(opts) })
 

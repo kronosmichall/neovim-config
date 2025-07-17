@@ -1,7 +1,3 @@
--- require("mason").setup()
--- require("mason-lspconfig").setup()
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---
 local lspconfig = require('lspconfig')
 lspconfig.ruby_lsp.setup({
   init_options = {
@@ -62,14 +58,14 @@ lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
-        version = 'LuaJIT',  -- For Neovim
+        version = 'LuaJIT', -- For Neovim
       },
       diagnostics = {
-        globals = { 'vim' },  -- Recognize the `vim` global
+        globals = { 'vim' }, -- Recognize the `vim` global
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,  -- Avoid telemetry popup
+        checkThirdParty = false, -- Avoid telemetry popup
       },
       telemetry = {
         enable = false,
@@ -81,3 +77,21 @@ lspconfig.lua_ls.setup({
 lspconfig.svelte.setup({})
 lspconfig.terraformls.setup({})
 
+-- local metals_config = require("metals").bare_config()
+--
+-- metals_config.settings = {
+--   showImplicitArguments = true,
+--   excludedPackages = {},
+-- }
+--
+-- metals_config.init_options.statusBarProvider = "on"
+--
+-- metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
+--
+-- -- Autocmd to start Metals only for Scala files
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "scala", "sbt" },
+--   callback = function()
+--     require("metals").initialize_or_attach(metals_config)
+--   end,
+-- })
