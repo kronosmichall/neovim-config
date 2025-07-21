@@ -1,13 +1,3 @@
--- movement
--- vim.keymap.set("n", "-", vim.cmd.Ex)
-
--- telescope
--- local builtin = require("telescope.builtin")
--- vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Telescope find in files" })
--- vim.keymap.set("n", "<leader>s", builtin.live_grep, { desc = "Telescope live grep" })
--- vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
--- vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Telescope help tags" })
-
 local fzf = require("fzf-lua")
 vim.keymap.set('n', '<leader>f', fzf.files, { desc = 'FzfLua: Find files' })
 vim.keymap.set('n', '<leader>s', fzf.live_grep, { desc = 'FzfLua: Live grep' })
@@ -79,3 +69,24 @@ vim.keymap.set("n", "<C-f>", function()
     vim.notify("No LSP client attached to this buffer.", vim.log.levels.WARN)
   end
 end, { desc = "Format with LSP", silent = true })
+
+-- git integration
+local gs = require("gitsigns")
+
+vim.keymap.set("n", "]h", function()
+  if vim.wo.diff then return "]h" end
+  vim.schedule(function() gs.next_hunk() end)
+  return "<Ignore>"
+end, { expr = true, desc = "Next Git hunk" })
+
+vim.keymap.set("n", "[h", function()
+  if vim.wo.diff then return "[h" end
+  vim.schedule(function() gs.prev_hunk() end)
+  return "<Ignore>"
+end, { expr = true, desc = "Previous Git hunk" })
+
+-- Git hunk actions
+vim.keymap.set("n", "<leader>hh", gs.preview_hunk, { desc = "Preview Git hunk" })
+vim.keymap.set("n", "<leader>hu", gs.reset_hunk, { desc = "Reset hunk" })
+vim.keymap.set("n", "<leader>hi", gs.stage_hunk, { desc = "Stage Git hunk" })
+vim.keymap.set("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Git blame line" })

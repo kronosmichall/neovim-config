@@ -93,5 +93,10 @@ return {
     "scalameta/nvim-metals",
     dependencies = { "nvim-lua/plenary.nvim" },
     ft = { "scala", "sbt" },
-  }
+  },
+{
+  "lewis6991/gitsigns.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {},
+},
 }
