@@ -1,7 +1,8 @@
 -- helper functions
 _G.last_test_term = {
   win = nil,
-  buf = nil
+  buf = nil,
+  last_command = nil,
 }
 
 local function isRuby()
@@ -38,6 +39,7 @@ vim.keymap.set("n", "<leader>t", function()
   local file = vim.fn.expand("%")
   local line = vim.fn.line(".")
   local cmd = { "bin/rails", "test", file .. ":" .. line }
+  _G.last_test_term.last_command = cmd
 
   runTest(cmd)
   -- open terminal split at the bottom, but don't move focus
@@ -50,8 +52,19 @@ vim.keymap.set("n", "<leader>T", function()
   local file = vim.fn.expand("%")
   local line = vim.fn.line(".")
   local cmd = { "bin/rails", "test", file }
+  _G.last_test_term.last_command = cmd
   runTest(cmd)
 end, { desc = "Run Rails all tests of current file", noremap = true, silent = true })
+
+-- redo last test
+vim.keymap.set("n", "<leader>rt", function()
+  if (not isRuby()) then return end
+
+
+  local cmd = _G.last_test_term.last_command
+  runTest(cmd)
+end, { desc = "Run Rails all tests of current file", noremap = true, silent = true })
+
 
 
 

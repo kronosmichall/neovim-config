@@ -37,3 +37,4 @@ require("my_lsp")
 require("rails")
 require("formatter")
 require("core.mappings")
+

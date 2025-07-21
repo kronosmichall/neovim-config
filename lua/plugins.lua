@@ -74,6 +74,7 @@ return {
     keys = {
       { "-", "<cmd>Oil<CR>", desc = "Open parent directory (Oil)" },
     },
+    lazy = false,
   },
   {
     "windwp/nvim-autopairs",
@@ -88,9 +89,9 @@ return {
     end,
     event = "BufReadPost",
   },
-  -- {
-  --   "scalameta/nvim-metals",
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  --   -- ft = { "scala", "sbt" },
-  -- }
+  {
+    "scalameta/nvim-metals",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    ft = { "scala", "sbt" },
+  }
 }
